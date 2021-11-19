@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-
+  get("/", { :controller => "homes", :action => "index"})
 
   # Routes for the Photoworkout resource:
 
@@ -81,6 +81,9 @@ Rails.application.routes.draw do
   # Routes for the Challenge resource:
 
   # CREATE
+  get("/challenges/new", { :controller => "challenges", :action => "new" })
+
+
   post("/insert_challenge", { :controller => "challenges", :action => "create" })
           
   # READ

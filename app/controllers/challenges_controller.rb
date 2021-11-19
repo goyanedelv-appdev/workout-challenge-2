@@ -75,4 +75,9 @@ class ChallengesController < ApplicationController
 
     redirect_to("/challenges", { :notice => "Challenge deleted successfully."} )
   end
+
+  def new
+    render({ :template => "challenges/new.html.erb" })
+
+  end
 end

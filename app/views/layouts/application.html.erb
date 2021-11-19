@@ -7,15 +7,56 @@
     <!-- Expand the number of characters we can use in the document beyond basic ASCII 🎉 -->
     <meta charset="utf-8">
 
+    <meta property="og:url" content="https://www.workoutchallenge.app" />
+    <meta property="og:image" content="https://goyanedelv.github.io/workout/logo-wc.png"/>  
+    <meta property="og:title" content="Workout Challenge Fall Edition"/>  
+    <meta property="og:description" content="Workout to win 💪!"/>  
+
     <!-- Make it responsive to small screens -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+
+    <!-- Navigation menu -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <%= csp_meta_tag %>
 
+    
     <%= stylesheet_link_tag 'application', media: 'all' %>
+
+    
 
   </head>
 
   <body>
+  <div class="topnav">
+    <a href="/challenges" class="active">Workout Challenge</a>
+    <!-- Navigation links (hidden by default) -->
+    <div id="myLinks">
+      <a href="/">Home</a>
+      <a href="#contact">Contact</a>
+      <a href="#about">About</a>
+    </div>
+    <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+    <a href="javascript:void(0);" class="icon" onclick="on_off_hamburger()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+
     <%= yield %>
+
+  <script>
+    function on_off_hamburger() {
+      var x = document.getElementById("myLinks");
+      if (x.style.display === "block") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "block";
+      }
+    }
+  </script>
+
   </body>
 </html>
