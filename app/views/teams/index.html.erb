@@ -1,0 +1,118 @@
+<div>
+  <div>
+    <h1>
+      List of all teams
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new team
+    </h2>
+
+    <form action="/insert_team" method="post">
+      <div>
+        <label for="team_name_box">
+          Team name
+        </label>
+
+        <input type="text" id="team_name_box" name="query_team_name">
+      </div>
+
+      <div>
+        <label for="team_picture_box">
+          Team picture
+        </label>
+
+        <input type="text" id="team_picture_box" name="query_team_picture">
+      </div>
+
+      <div>
+        <label for="challenge_id_box">
+          Challenge
+        </label>
+
+        <input type="text" id="challenge_id_box" name="query_challenge_id">
+      </div>
+
+      <button>
+        Create team
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Team name
+        </th>
+
+        <th>
+          Team picture
+        </th>
+
+        <th>
+          Challenge
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_teams.each do |a_team| %>
+      <tr>
+        <td>
+          <%= a_team.id %>
+        </td>
+
+        <td>
+          <%= a_team.team_name %>
+        </td>
+
+        <td>
+          <%= a_team.team_picture %>
+        </td>
+
+        <td>
+          <%= a_team.challenge_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_team.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_team.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/teams/<%= a_team.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

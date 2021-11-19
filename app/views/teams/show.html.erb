@@ -1,0 +1,101 @@
+<div>
+  <div>
+    <h1>
+      Team #<%= @the_team.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/teams">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_team/<%= @the_team.id %>">
+          Delete team
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Team name
+      </dt>
+      <dd>
+        <%= @the_team.team_name %>
+      </dd>
+
+      <dt>
+        Team picture
+      </dt>
+      <dd>
+        <%= @the_team.team_picture %>
+      </dd>
+
+      <dt>
+        Challenge
+      </dt>
+      <dd>
+        <%= @the_team.challenge_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_team.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_team.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit team
+    </h2>
+
+    <form action="/modify_team/<%= @the_team.id %>"  method="post" >
+      <div>
+        <label for="team_name_box">
+          Team name
+        </label>
+
+        <input type="text" id="team_name_box" name="query_team_name" value="<%= @the_team.team_name %>">
+      </div>
+
+      <div>
+        <label for="team_picture_box">
+          Team picture
+        </label>
+
+        <input type="text" id="team_picture_box" name="query_team_picture" value="<%= @the_team.team_picture %>">
+      </div>
+
+      <div>
+        <label for="challenge_id_box">
+          Challenge
+        </label>
+
+        <input type="text" id="challenge_id_box" name="query_challenge_id" value="<%= @the_team.challenge_id %>">
+      </div>
+
+      <button>
+        Update team
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

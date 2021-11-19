@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      Privilege #<%= @the_privilege.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/privileges">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_privilege/<%= @the_privilege.id %>">
+          Delete privilege
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Challenge
+      </dt>
+      <dd>
+        <%= @the_privilege.challenge_id %>
+      </dd>
+
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_privilege.user_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_privilege.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_privilege.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit privilege
+    </h2>
+
+    <form action="/modify_privilege/<%= @the_privilege.id %>"  method="post" >
+      <div>
+        <label for="challenge_id_box">
+          Challenge
+        </label>
+
+        <input type="text" id="challenge_id_box" name="query_challenge_id" value="<%= @the_privilege.challenge_id %>">
+      </div>
+
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_privilege.user_id %>">
+      </div>
+
+      <button>
+        Update privilege
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

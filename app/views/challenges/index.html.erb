@@ -1,0 +1,278 @@
+<div>
+  <div>
+    <h1>
+      List of all challenges
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new challenge
+    </h2>
+
+    <form action="/insert_challenge" method="post">
+      <div>
+        <label for="starting_time_box">
+          Starting time
+        </label>
+
+        <input type="datetime-local" id="starting_time_box" name="query_starting_time">
+      </div>
+
+      <div>
+        <label for="ending_time_box">
+          Ending time
+        </label>
+
+        <input type="text" id="ending_time_box" name="query_ending_time">
+      </div>
+
+      <div>
+        <label for="challenge_name_box">
+          Challenge name
+        </label>
+
+        <input type="text" id="challenge_name_box" name="query_challenge_name">
+      </div>
+
+      <div>
+        <label for="challenge_image_box">
+          Challenge image
+        </label>
+
+        <input type="text" id="challenge_image_box" name="query_challenge_image">
+      </div>
+
+      <div>
+        <label for="removal_policy_box">
+          Removal policy
+        </label>
+
+        <input type="text" id="removal_policy_box" name="query_removal_policy">
+      </div>
+
+      <div>
+        <label for="new_user_policy_box">
+          New user policy
+        </label>
+
+        <input type="text" id="new_user_policy_box" name="query_new_user_policy">
+      </div>
+
+      <div>
+        <label for="penalty_policy_box">
+          Penalty policy
+        </label>
+
+        <input type="text" id="penalty_policy_box" name="query_penalty_policy">
+      </div>
+
+      <div>
+        <label for="workout_perday_policy_box">
+          Workout perday policy
+        </label>
+
+        <input type="text" id="workout_perday_policy_box" name="query_workout_perday_policy">
+      </div>
+
+      <div>
+        <label for="workout_criteria_box">
+          Workout criteria
+        </label>
+
+        <input type="text" id="workout_criteria_box" name="query_workout_criteria">
+      </div>
+
+      <div>
+        <label for="prize_policy_box">
+          Prize policy
+        </label>
+
+        <textarea id="prize_policy_box" name="query_prize_policy" rows="3"></textarea>
+      </div>
+
+      <div>
+        <label for="challenge_handle_box">
+          Challenge handle
+        </label>
+
+        <input type="text" id="challenge_handle_box" name="query_challenge_handle">
+      </div>
+
+      <div>
+        <label for="number_of_teams_box">
+          Number of teams
+        </label>
+
+        <input type="text" id="number_of_teams_box" name="query_number_of_teams">
+      </div>
+
+      <div>
+        <label for="challenge_type_box">
+          Challenge type
+        </label>
+
+        <input type="text" id="challenge_type_box" name="query_challenge_type">
+      </div>
+
+      <button>
+        Create challenge
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Starting time
+        </th>
+
+        <th>
+          Ending time
+        </th>
+
+        <th>
+          Challenge name
+        </th>
+
+        <th>
+          Challenge image
+        </th>
+
+        <th>
+          Removal policy
+        </th>
+
+        <th>
+          New user policy
+        </th>
+
+        <th>
+          Penalty policy
+        </th>
+
+        <th>
+          Workout perday policy
+        </th>
+
+        <th>
+          Workout criteria
+        </th>
+
+        <th>
+          Prize policy
+        </th>
+
+        <th>
+          Challenge handle
+        </th>
+
+        <th>
+          Number of teams
+        </th>
+
+        <th>
+          Challenge type
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_challenges.each do |a_challenge| %>
+      <tr>
+        <td>
+          <%= a_challenge.id %>
+        </td>
+
+        <td>
+          <%= a_challenge.starting_time %>
+        </td>
+
+        <td>
+          <%= a_challenge.ending_time %>
+        </td>
+
+        <td>
+          <%= a_challenge.challenge_name %>
+        </td>
+
+        <td>
+          <%= a_challenge.challenge_image %>
+        </td>
+
+        <td>
+          <%= a_challenge.removal_policy %>
+        </td>
+
+        <td>
+          <%= a_challenge.new_user_policy %>
+        </td>
+
+        <td>
+          <%= a_challenge.penalty_policy %>
+        </td>
+
+        <td>
+          <%= a_challenge.workout_perday_policy %>
+        </td>
+
+        <td>
+          <%= a_challenge.workout_criteria %>
+        </td>
+
+        <td>
+          <%= a_challenge.prize_policy %>
+        </td>
+
+        <td>
+          <%= a_challenge.challenge_handle %>
+        </td>
+
+        <td>
+          <%= a_challenge.number_of_teams %>
+        </td>
+
+        <td>
+          <%= a_challenge.challenge_type %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_challenge.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_challenge.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/challenges/<%= a_challenge.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
