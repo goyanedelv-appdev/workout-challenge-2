@@ -1,8 +1,12 @@
 class PhotoworkoutsController < ApplicationController
   
   def new
-    render({ :template => "photoworkouts/new.html.erb" })
 
+    if @current_user == nil
+      redirect_to("/user_sign_in")
+    else
+      render({ :template => "photoworkouts/new.html.erb" })
+    end
   end
   
   

@@ -1,27 +1,35 @@
 class ChallengesController < ApplicationController
   def index
+    if @current_user == nil
+      redirect_to("/user_sign_in") # add a notice
+    else
+      the_id = @current_user.id
 
-    the_id = @current_user.id
+      matching_participations = Participation.where({:user_id => the_id})
 
-    matching_participations = Participation.where({:user_id => the_id})
+      # matching_challenges = Challenge.where({ :id => the_id })
 
-    # matching_challenges = Challenge.where({ :id => the_id })
+      @list_of_participations = matching_participations.order({ :created_at => :desc })
 
-    @list_of_participations = matching_participations.order({ :created_at => :desc })
-
-    render({ :template => "challenges/index.html.erb" })
+      render({ :template => "challenges/index.html.erb" })
+    end
   end
 
   def show
-    handle = params.fetch("handle")
+    if @current_user == nil
+      redirect_to("/user_sign_in") # add a notice
 
-    matching_challenges = Challenge.where({ :challenge_handle => handle })
+    else
+      handle = params.fetch("handle")
 
-    @the_challenge = matching_challenges.at(0)
+      matching_challenges = Challenge.where({ :challenge_handle => handle })
 
-    @photoworkouts = Photoworkout.where({:challenge_id => @the_challenge.id})
+      @the_challenge = matching_challenges.at(0)
 
-    render({ :template => "challenges/show.html.erb" })
+      @photoworkouts = Photoworkout.where({:challenge_id => @the_challenge.id})
+
+      render({ :template => "challenges/show.html.erb" })
+    end
   end
 
   def create

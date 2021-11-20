@@ -91,3 +91,29 @@ task({ :sample_data_photoworkouts => :environment}) do
   end
     
 end
+
+desc "Create challenges 2"
+task({ :sample_data_challenges_2 => :environment}) do
+  require 'faker'
+  time = Time.now
+
+  challenge = Challenge.new
+  challenge.starting_time = "2021-11-25 00:00:00 UTC"
+  challenge.ending_time = "2021-12-31 23:59:59 UTC"
+  challenge.challenge_name = "Workout to beers"
+  challenge.challenge_image = "https://loremflickr.com/300/300/barbecue"
+  challenge.removal_policy = 1
+  challenge.new_user_policy = 1
+  challenge.penalty_policy = 1
+  challenge.workout_perday_policy = 1
+  challenge.workout_criteria = 1
+  challenge.prize_policy = "Losers pay a round of beers!"
+  challenge.challenge_handle = "beers_or_die"
+  challenge.number_of_teams = 2
+  challenge.challenge_type = 1
+  challenge.created_at = time
+  challenge.updated_at = time
+
+  challenge.save
+
+end

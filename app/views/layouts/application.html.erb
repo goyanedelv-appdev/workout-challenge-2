@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FinalProject</title>
+    <title>Workout Challenge 💪</title>
     <%= csrf_meta_tags %>
 
     <!-- Expand the number of characters we can use in the document beyond basic ASCII 🎉 -->
@@ -20,6 +20,9 @@
 
     <!-- Navigation menu -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
     <%= csp_meta_tag %>
     
@@ -31,7 +34,7 @@
       <a href="/challenges" class="active">Workout Challenge</a>
       <!-- Navigation links (hidden by default) -->
       <div id="myLinks">
-
+        <a href="/">Home</a>
         <% if @current_user == nil %>
         <a href="/user_sign_in">Log in</a>
         <a href="/user_sign_up">Sign up</a>
@@ -40,7 +43,6 @@
         <a href="/challenges">My challenges</a>
         <a href="/edit_user_profile">User settings</a>
         <% end %>
-        <a href="/about">About</a>
 
       </div>
       <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
@@ -49,6 +51,17 @@
       </a>
     </div>
 
+    <% if notice.present? %>
+      <div class="alert alert-success" role="alert">
+        <%= notice %>
+      </div>
+    <% end %>
+    <% if alert.present? %>
+      <div class="alert alert-warning" role="alert">
+        <%= alert %>
+      </div>
+    <% end %>
+    
     <%= yield %>
 
     <script>
