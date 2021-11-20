@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   # CREATE
   post("/insert_photoworkout", { :controller => "photoworkouts", :action => "create" })
+
+  get("/challenges/:handle/new", { :controller => "photoworkouts", :action => "new" })
           
   # READ
   get("/photoworkouts", { :controller => "photoworkouts", :action => "index" })
@@ -89,7 +91,7 @@ Rails.application.routes.draw do
   # READ
   get("/challenges", { :controller => "challenges", :action => "index" })
   
-  get("/challenges/:path_id", { :controller => "challenges", :action => "show" })
+  get("/challenges/:handle", { :controller => "challenges", :action => "show" })
   
   # UPDATE
   

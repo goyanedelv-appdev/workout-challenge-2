@@ -1,18 +1,25 @@
 class ChallengesController < ApplicationController
   def index
-    matching_challenges = Challenge.all
 
-    @list_of_challenges = matching_challenges.order({ :created_at => :desc })
+    the_id = @current_user.id
+
+    matching_participations = Participation.where({:user_id => the_id})
+
+    # matching_challenges = Challenge.where({ :id => the_id })
+
+    @list_of_participations = matching_participations.order({ :created_at => :desc })
 
     render({ :template => "challenges/index.html.erb" })
   end
 
   def show
-    the_id = params.fetch("path_id")
+    handle = params.fetch("handle")
 
-    matching_challenges = Challenge.where({ :id => the_id })
+    matching_challenges = Challenge.where({ :challenge_handle => handle })
 
     @the_challenge = matching_challenges.at(0)
+
+    @photoworkouts = Photoworkout.where({:challenge_id => @the_challenge.id})
 
     render({ :template => "challenges/show.html.erb" })
   end

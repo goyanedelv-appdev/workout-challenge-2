@@ -41,11 +41,11 @@ class UserAuthenticationController < ApplicationController
     @user.email = params.fetch("query_email")
     @user.password = params.fetch("query_password")
     @user.password_confirmation = params.fetch("query_password_confirmation")
-    @user.is_premium = params.fetch("query_is_premium", false)
+    @user.is_premium = false # params.fetch("query_is_premium", false)
     @user.profile_picture = params.fetch("query_profile_picture")
     @user.bio = params.fetch("query_bio")
     @user.username = params.fetch("query_username")
-
+ 
     save_status = @user.save
 
     if save_status == true
@@ -66,7 +66,7 @@ class UserAuthenticationController < ApplicationController
     @user.email = params.fetch("query_email")
     @user.password = params.fetch("query_password")
     @user.password_confirmation = params.fetch("query_password_confirmation")
-    @user.is_premium = params.fetch("query_is_premium", false)
+    @user.is_premium = false # initialize as false
     @user.profile_picture = params.fetch("query_profile_picture")
     @user.bio = params.fetch("query_bio")
     @user.username = params.fetch("query_username")

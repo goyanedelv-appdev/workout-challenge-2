@@ -1,21 +1,46 @@
-<div >
-  <h5>
-    Edit User Account
-  </h5>
+<style>
+  .user {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
+
+  .one {
+    background-image: url("https://robohash.org/<%= @current_user.profile_picture %>.png");
+    border: solid;
+  }
+
+</style>
+
+<div style="width:80%; margin:0 auto;"  >
+  <div class="user one"> </div>
+  <h2>
+      Hello, <%= @current_user.username %>!
+  </h2>
+
+  <h2>
+      Edit User Account
+  </h2>
 
   <div>
+
     <form action="/modify_user" method="post">
       <div>
         <label for="email_box">Email</label>
         <input id="email_box" name="query_email" value="<%= @current_user.email %>">
       </div>
-      <div>
+      <!--<div>
         <label for="is_premium_box">Is premium</label>
         <input id="is_premium_box" name="query_is_premium" type="checkbox" value="1" <%= "checked" if @current_user.is_premium %>>
-      </div>
+      </div>-->
       <div>
         <label for="profile_picture_box">Profile picture</label>
-        <input id="profile_picture_box" name="query_profile_picture" value="<%= @current_user.profile_picture %>">
+        <input type="file" id="profile_picture_box" name="query_profile_picture" enctype="multipart/form-data">
       </div>
       <div>
         <label for="bio_box">Bio</label>

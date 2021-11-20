@@ -1,4 +1,11 @@
 class PhotoworkoutsController < ApplicationController
+  
+  def new
+    render({ :template => "photoworkouts/new.html.erb" })
+
+  end
+  
+  
   def index
     matching_photoworkouts = Photoworkout.all
 

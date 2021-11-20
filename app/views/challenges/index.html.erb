@@ -1,12 +1,36 @@
-<div>
+
+
+
+<div style="width:80%; margin:0 auto;">
   <div>
     <h1>
-      Your Challenges
+      Hello, <%= @current_user.username %>!
     </h1>
   </div>
-</div>
-  <p> Here we will render all challenges </p>
-  <p> We need to add a new challenge button somewhere </p>
 
-<hr>
+
+
+  <!--  <%= @current_user.profile_picture %> -->
+  <hr>
+
+
+<h2> Active Challenges </h2>
+
+    <table>
+    <% @list_of_participations.each do |participation| %>
+      <tr>
+        <!--<img src="https://robohash.org/<%= participation.challenge.id %>" height="200" width="400" border="1px" title="Smiley face"></p>
+        -->
+<a href="/challenges/<%= participation.challenge.challenge_handle %>">
+        <div class="img__wrap">
+          <img class="img__img" src="https://robohash.org/<%= participation.challenge.id %>" height="200" width="400"/>
+          <p class="img__description">Go to #<%= participation.challenge.challenge_handle %></p>
+        </div>
+</a>
+
+      </tr>
+    <% end %>
+    </table>
+  </div>
+
 <hr>

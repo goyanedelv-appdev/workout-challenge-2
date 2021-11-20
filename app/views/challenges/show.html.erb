@@ -1,135 +1,51 @@
-<div>
-  <div>
+<style>
+  .gtext {
+      color: white;
+      font-family: "Helvetica";
+  }
+</style>
+
+
+<div  style="width:80%; margin:0 auto;">  <div>
     <h1>
-      Challenge #<%= @the_challenge.id %> details
+      #<%= @the_challenge.challenge_handle %> feed
     </h1>
-
-    <div>
-      <div>
-        <a href="/challenges">
-          Go back
-        </a>
-      </div>
-
-      <div>
-        <a href="/delete_challenge/<%= @the_challenge.id %>">
-          Delete challenge
-        </a>
-      </div>
-    </div>
-
-    <dl>
-      <dt>
-        Starting time
-      </dt>
-      <dd>
-        <%= @the_challenge.starting_time %>
-      </dd>
-
-      <dt>
-        Ending time
-      </dt>
-      <dd>
-        <%= @the_challenge.ending_time %>
-      </dd>
-
-      <dt>
-        Challenge name
-      </dt>
-      <dd>
-        <%= @the_challenge.challenge_name %>
-      </dd>
-
-      <dt>
-        Challenge image
-      </dt>
-      <dd>
-        <%= @the_challenge.challenge_image %>
-      </dd>
-
-      <dt>
-        Removal policy
-      </dt>
-      <dd>
-        <%= @the_challenge.removal_policy %>
-      </dd>
-
-      <dt>
-        New user policy
-      </dt>
-      <dd>
-        <%= @the_challenge.new_user_policy %>
-      </dd>
-
-      <dt>
-        Penalty policy
-      </dt>
-      <dd>
-        <%= @the_challenge.penalty_policy %>
-      </dd>
-
-      <dt>
-        Workout perday policy
-      </dt>
-      <dd>
-        <%= @the_challenge.workout_perday_policy %>
-      </dd>
-
-      <dt>
-        Workout criteria
-      </dt>
-      <dd>
-        <%= @the_challenge.workout_criteria %>
-      </dd>
-
-      <dt>
-        Prize policy
-      </dt>
-      <dd>
-        <%= @the_challenge.prize_policy %>
-      </dd>
-
-      <dt>
-        Challenge handle
-      </dt>
-      <dd>
-        <%= @the_challenge.challenge_handle %>
-      </dd>
-
-      <dt>
-        Number of teams
-      </dt>
-      <dd>
-        <%= @the_challenge.number_of_teams %>
-      </dd>
-
-      <dt>
-        Challenge type
-      </dt>
-      <dd>
-        <%= @the_challenge.challenge_type %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_challenge.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_challenge.updated_at) %> ago
-      </dd>
-    </dl>
   </div>
-</div>
+
+    
+
 
 <hr>
 
+  <table>
+    <% @photoworkouts.each do |workout| %>
+      <div style="width:80%; margin:0 auto;">
+        <tr>
+          <img src="https://robohash.org/<%= workout.id %>" loading="lazy">
+        </tr>
+        <table width="400" >
+          <tr bgcolor="royalblue">
+            <td align="left" class="gtext">
+              @<%= workout.user.username%>
+            </td>
+            <td align="right" class="gtext">
+              <%= workout.likes_count%>
+            </td>
+            <td>
+              <a href="/add_like">Like</a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    <% end %>
 
+  </table>
+
+</div>
+
+<a href="/challenges/<%= @the_challenge.challenge_handle%>/new" class="kc_fab_main_btn">💪</a>
+
+<!--
 <div>
   <div>
     <h2>
@@ -248,5 +164,6 @@
     </form>
   </div>
 </div>
+-->
 
 <hr>

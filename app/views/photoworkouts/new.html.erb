@@ -1,0 +1,56 @@
+<div  style="width:80%; margin:0 auto;">
+  <h1> New Workout! </h1>
+  <form action="/insert_photoworkout" method="post">
+        <div>
+          <label for="caption_box">
+            Caption
+          </label>
+
+          <textarea id="caption_box" name="query_caption" rows="3"></textarea>
+        </div>
+
+        <div>
+          <label for="challenge_id_box">
+            Challenge
+          </label>
+
+          <input type="text" id="challenge_id_box" name="query_challenge_id">
+        </div>
+
+        <div>
+          <input type="hidden" id="user_id_box" name="query_user_id" value=<%= @current_user.id%>>
+        </div>
+
+        <div>
+          <input type="hidden" id="likes_count_box" name="query_likes_count" value=0>
+        </div>
+
+        <div>
+          <label for="photo_locator_box">
+            Photo locator
+          </label>
+
+          <input type="file" id="photo_locator_box" name="query_photo_locator" enctype="multipart/form-data">
+        </div>
+
+        <div>
+          <label for="calories_box">
+            Calories
+          </label>
+
+          <input type="text" id="calories_box" name="query_calories">
+        </div>
+
+        <div>
+          <label for="main_exercise_box">
+            Main exercise
+          </label>
+
+          <input type="text" id="main_exercise_box" name="query_main_exercise">
+        </div>
+
+        <button>
+          Create photoworkout
+        </button>
+  </form>
+</div>

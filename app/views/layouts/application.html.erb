@@ -22,41 +22,45 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <%= csp_meta_tag %>
-
     
     <%= stylesheet_link_tag 'application', media: 'all' %>
-
-    
-
   </head>
 
   <body>
-  <div class="topnav">
-    <a href="/challenges" class="active">Workout Challenge</a>
-    <!-- Navigation links (hidden by default) -->
-    <div id="myLinks">
-      <a href="/">Home</a>
-      <a href="#contact">Contact</a>
-      <a href="#about">About</a>
+    <div class="topnav">
+      <a href="/challenges" class="active">Workout Challenge</a>
+      <!-- Navigation links (hidden by default) -->
+      <div id="myLinks">
+
+        <% if @current_user == nil %>
+        <a href="/user_sign_in">Log in</a>
+        <a href="/user_sign_up">Sign up</a>
+        <% else %>
+        <a href="/user_sign_out">Log out</a>
+        <a href="/challenges">My challenges</a>
+        <a href="/edit_user_profile">User settings</a>
+        <% end %>
+        <a href="/about">About</a>
+
+      </div>
+      <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+      <a href="javascript:void(0);" class="icon" onclick="on_off_hamburger()">
+        <i class="fa fa-bars"></i>
+      </a>
     </div>
-    <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
-    <a href="javascript:void(0);" class="icon" onclick="on_off_hamburger()">
-      <i class="fa fa-bars"></i>
-    </a>
-  </div>
 
     <%= yield %>
 
-  <script>
-    function on_off_hamburger() {
-      var x = document.getElementById("myLinks");
-      if (x.style.display === "block") {
-        x.style.display = "none";
-      } else {
-        x.style.display = "block";
+    <script>
+      function on_off_hamburger() {
+        var x = document.getElementById("myLinks");
+        if (x.style.display === "block") {
+          x.style.display = "none";
+        } else {
+          x.style.display = "block";
+        }
       }
-    }
-  </script>
+    </script>
 
   </body>
 </html>
