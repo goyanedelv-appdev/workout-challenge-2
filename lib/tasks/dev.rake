@@ -117,3 +117,9 @@ task({ :sample_data_challenges_2 => :environment}) do
   challenge.save
 
 end
+
+desc "Create challenges 2"
+task({ :re_do_images => :environment}) do
+
+
+end

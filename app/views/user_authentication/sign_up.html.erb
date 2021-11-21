@@ -1,6 +1,6 @@
 <h1>Sign up and start challenging yourself!</h1>
 <div style="width:80%; margin:0 auto;">
-  <form action="/insert_user" method="post">
+  <form action="/insert_user" method="post"  enctype="multipart/form-data">
 
     <div>
       <label for="email_box">Email</label>
@@ -15,7 +15,7 @@
     <div>
       <label for="profile_picture_box">Profile picture</label>
         
-      <input type="file" id="profile_picture_box" name="query_profile_picture" enctype="multipart/form-data">
+      <input type="file" id="profile_picture_box" name="query_profile_picture" >
     </div>
           
     <div>

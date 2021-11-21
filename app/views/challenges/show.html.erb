@@ -3,6 +3,17 @@
       color: white;
       font-family: "Helvetica";
   }
+
+  .pwrap {
+    word-break: break-all;
+    white-space: normal;
+  }
+
+    .gcomment {
+      color: black;
+      font-family: "Helvetica";
+  }
+
 </style>
 
 
@@ -19,24 +30,37 @@
 
   <table>
     <% @photoworkouts.each do |workout| %>
-      <div style="width:80%; margin:0 auto;">
+      <!--<div style="width:80%; margin:0 auto;"> -->
         <tr>
-          <img src="https://robohash.org/<%= workout.id %>" loading="lazy">
+          <p></p>
         </tr>
-        <table width="400" >
+        <table width="400px" >
+
           <tr bgcolor="royalblue">
             <td align="left" class="gtext">
               @<%= workout.user.username%>
             </td>
+
             <td align="right" class="gtext">
-              <%= workout.likes_count%>
+              <%= workout.likes_count%> <a href="/add_like"> ❤️</a>
             </td>
-            <td>
-              <a href="/add_like">Like</a>
+          </tr>
+
+        </table>
+
+        <tr>
+          <img src="<%= workout.photo_locator %>" loading="lazy" width="400px">
+        </tr>
+        <table width="400px" >
+          <tr >
+            <td align="left" class="gcomment">
+            <p class="pwrap">
+              💬<%= workout.caption%>
+            </p>
             </td>
           </tr>
         </table>
-      </div>
+      <!--</div>-->
     <% end %>
 
   </table>

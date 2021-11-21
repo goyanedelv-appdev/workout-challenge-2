@@ -1,6 +1,6 @@
 <div  style="width:80%; margin:0 auto;">
   <h1> New Workout! </h1>
-  <form action="/insert_photoworkout" method="post">
+  <form action="/insert_photoworkout" method="post" enctype="multipart/form-data">
         <div>
           <label for="caption_box">
             Caption
@@ -14,7 +14,7 @@
             Challenge
           </label>
 
-          <input type="text" id="challenge_id_box" name="query_challenge_id">
+          <input type="hidden" id="challenge_id_box" name="query_challenge_id" value = <%=@handle%> >
         </div>
 
         <div>
@@ -27,10 +27,10 @@
 
         <div>
           <label for="photo_locator_box">
-            Photo locator
+            Workout Picture
           </label>
 
-          <input type="file" id="photo_locator_box" name="query_photo_locator" enctype="multipart/form-data">
+          <input type="file" id="photo_locator_box" name="query_photo_locator" >
         </div>
 
         <div>
@@ -49,7 +49,7 @@
           <input type="text" id="main_exercise_box" name="query_main_exercise">
         </div>
 
-        <button>
+        <button class="button">
           Create photoworkout
         </button>
   </form>

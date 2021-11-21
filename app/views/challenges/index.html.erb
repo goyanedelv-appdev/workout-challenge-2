@@ -10,27 +10,31 @@
 
 
 
-  <!--  <%= @current_user.profile_picture %> -->
-  <hr>
+    <!--  <%= @current_user.profile_picture %> -->
+    <hr>
 
 
-<h2> Active Challenges </h2>
+  <h2> Active Challenges </h2>
 
-    <table>
-    <% @list_of_participations.each do |participation| %>
-      <tr>
-        <!--<img src="https://robohash.org/<%= participation.challenge.id %>" height="200" width="400" border="1px" title="Smiley face"></p>
-        -->
-<a href="/challenges/<%= participation.challenge.challenge_handle %>">
-        <div class="img__wrap">
-          <img class="img__img" src="https://robohash.org/<%= participation.challenge.id %>" height="200" width="400"/>
-          <p class="img__description">Go to #<%= participation.challenge.challenge_handle %></p>
+      <% @list_of_participations.each do |participation| %>
+  <!--<table>-->
+      
+
+        <!-- tr-->
+        <div>
+          <a href="/challenges/<%= participation.challenge.challenge_handle %>">
+            <div class="img__wrap">
+              <img class="img__img" src="<%= participation.challenge.challenge_image %>" height="200" width="320"/>
+              <p class="img__description">Go to #<%= participation.challenge.challenge_handle %></p>
+            </div>
+          </a>
         </div>
-</a>
+        <!--/tr-->
+      <% end %>
+  <!--</table>-->
+</div>
 
-      </tr>
-    <% end %>
-    </table>
-  </div>
+<a href="/challenges/new" class="kc_fab_main_btn">➕</a>
+
 
 <hr>

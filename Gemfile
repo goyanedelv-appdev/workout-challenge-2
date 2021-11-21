@@ -6,6 +6,8 @@ ruby '2.7.3'
 gem "carrierwave"
 gem "cloudinary"
 
+gem "chartkick"
+
 gem 'bcrypt'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'http'

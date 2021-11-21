@@ -2,6 +2,8 @@ class PhotoworkoutsController < ApplicationController
   
   def new
 
+    @handle = params.fetch("handle")
+
     if @current_user == nil
       redirect_to("/user_sign_in")
     else
@@ -29,20 +31,25 @@ class PhotoworkoutsController < ApplicationController
   end
 
   def create
+    handle_from_path = params.fetch("query_challenge_id") # this works, but it gives the handle, not it
+    challenge_id = Challenge.where({ :challenge_handle => handle_from_path}).at(0).id
+
     the_photoworkout = Photoworkout.new
     the_photoworkout.caption = params.fetch("query_caption")
-    the_photoworkout.challenge_id = params.fetch("query_challenge_id")
+    the_photoworkout.challenge_id = challenge_id
     the_photoworkout.user_id = params.fetch("query_user_id")
-    the_photoworkout.likes_count = params.fetch("query_likes_count")
+    the_photoworkout.likes_count = 0
     the_photoworkout.photo_locator = params.fetch("query_photo_locator")
     the_photoworkout.calories = params.fetch("query_calories")
     the_photoworkout.main_exercise = params.fetch("query_main_exercise")
 
+    
     if the_photoworkout.valid?
       the_photoworkout.save
-      redirect_to("/photoworkouts", { :notice => "Photoworkout created successfully." })
+      handle = the_photoworkout.challenge.challenge_handle
+      redirect_to("/challenges/#{handle}", { :notice => "Photoworkout created successfully." })
     else
-      redirect_to("/photoworkouts", { :notice => "Photoworkout failed to create successfully." })
+      redirect_to("/challenges/", { :notice => "Photoworkout failed to create successfully." })
     end
   end
 

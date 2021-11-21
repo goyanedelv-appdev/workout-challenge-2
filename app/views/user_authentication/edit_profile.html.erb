@@ -11,7 +11,7 @@
   }
 
   .one {
-    background-image: url("https://robohash.org/<%= @current_user.profile_picture %>.png");
+    background-image: url("<%= @current_user.profile_picture %>");
     border: solid;
   }
 
@@ -29,7 +29,7 @@
 
   <div>
 
-    <form action="/modify_user" method="post">
+    <form action="/modify_user" method="post" enctype="multipart/form-data">
       <div>
         <label for="email_box">Email</label>
         <input id="email_box" name="query_email" value="<%= @current_user.email %>">
@@ -40,7 +40,7 @@
       </div>-->
       <div>
         <label for="profile_picture_box">Profile picture</label>
-        <input type="file" id="profile_picture_box" name="query_profile_picture" enctype="multipart/form-data">
+        <input type="file" id="profile_picture_box" name="query_profile_picture">
       </div>
       <div>
         <label for="bio_box">Bio</label>

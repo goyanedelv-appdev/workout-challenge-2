@@ -151,8 +151,8 @@ input.invalid {
 /* Image hover, challenges*/
 .img__wrap {
   position: relative;
-  height: 220px;
-  width: 400px;
+  height: 210px;
+  width: 320px;
 }
 
 .img__description {
