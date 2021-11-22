@@ -17,11 +17,23 @@
 
 </style>
 
-<div style="width:80%; margin:0 auto;"  >
-  <div class="user one"> </div>
-  <h2>
-      Hello, <%= @current_user.username %>!
-  </h2>
+<div style="width:80%; margin:0 auto;" >
+
+  <table>
+    <tr>
+      <td>
+        <div class="user one"> </div>
+      </td>
+      <td>
+        <h2>
+            Hello, <%= @current_user.username %>!
+        </h2>
+        <p>
+          ⭐ <%= @current_user.bio %>
+        </p>
+      <td>
+    </tr>
+  </table>
 
   <h2>
       Edit User Account
@@ -40,7 +52,7 @@
       </div>-->
       <div>
         <label for="profile_picture_box">Profile picture</label>
-        <input type="file" id="profile_picture_box" name="query_profile_picture">
+        <input type="file" id="profile_picture_box" name="query_profile_picture" >
       </div>
       <div>
         <label for="bio_box">Bio</label>
@@ -65,5 +77,7 @@
         Update account
       </button>
     </form>
+          <hr>
+  <a href="/challenges/"> Go back</a>
   </div>
 </div>

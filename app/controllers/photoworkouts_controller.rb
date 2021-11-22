@@ -31,8 +31,8 @@ class PhotoworkoutsController < ApplicationController
   end
 
   def create
-    handle_from_path = params.fetch("query_challenge_id") # this works, but it gives the handle, not it
-    challenge_id = Challenge.where({ :challenge_handle => handle_from_path}).at(0).id
+    @handle_from_path = params.fetch("query_challenge_id") # this works, but it gives the handle, not id
+    challenge_id = Challenge.where({ :challenge_handle => @handle_from_path}).at(0).id
 
     the_photoworkout = Photoworkout.new
     the_photoworkout.caption = params.fetch("query_caption")

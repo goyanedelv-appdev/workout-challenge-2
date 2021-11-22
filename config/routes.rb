@@ -103,6 +103,9 @@ Rails.application.routes.draw do
 
   get("/challenges/:handle/join", { :controller => "challenges", :action => "join" })
 
+  get("/challenges/:handle/teams", { :controller => "challenges", :action => "teams" })
+
+
   # UPDATE
   
   post("/modify_challenge/:path_id", { :controller => "challenges", :action => "update" })

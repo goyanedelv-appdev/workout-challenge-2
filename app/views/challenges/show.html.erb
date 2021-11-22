@@ -21,19 +21,34 @@
     <h1>
         #<%= @the_challenge.challenge_handle %> feed
     </h1>
+
     <table width="400px">
-      <tr >
-        <td >
-          <a href="/challenges/<%= @the_challenge.challenge_handle %>/edit" class="button"> Edit </a>
+      <tr>
+        <p>
+          💪 <%= @the_challenge.challenge_name %>
+        </p>
+      </tr>
+      
+      <tr>
+        <p>
+          🏆 <%= @the_challenge.prize_policy %>
+        </p>
+      </tr>
+      <tr bgcolor="royalblue">
+        <td class="gtext" align="center" >
+          <a href="/challenges/<%= @the_challenge.challenge_handle %>/edit" style="color:white;"> Edit </a>
         </td>
-        <td >
-          <a href="/challenges/<%= @the_challenge.challenge_handle %>/stats" class="button"> Stats </a>
+        <td class="gtext" align="center">
+          <a href="/challenges/<%= @the_challenge.challenge_handle %>/stats" style="color:white;"> Stats </a>
         </td>
-        <td >
-          <a href="/challenges/<%= @the_challenge.challenge_handle %>/rules" class="button"> Rules </a>
+        <td class="gtext" align="center">
+          <a href="/challenges/<%= @the_challenge.challenge_handle %>/rules" style="color:white;"> Rules </a>
         </td>
-        <td >
-          <a href="/challenges/<%= @the_challenge.challenge_handle %>/invite" class="button"> Invite </a>
+        <td class="gtext" align="center">
+          <a href="/challenges/<%= @the_challenge.challenge_handle %>/invite" style="color:white;"> Invite </a>
+        </td>
+        <td class="gtext" align="center">
+          <a href="/challenges/<%= @the_challenge.challenge_handle %>/teams" style="color:white;"> Teams </a>
         </td>
       </tr>
     </table>

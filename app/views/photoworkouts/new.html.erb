@@ -11,7 +11,7 @@
 
         <div>
           <label for="challenge_id_box">
-            Challenge
+            
           </label>
 
           <input type="hidden" id="challenge_id_box" name="query_challenge_id" value = <%=@handle%> >
@@ -53,4 +53,8 @@
           Create photoworkout
         </button>
   </form>
+
+    <hr>
+  <a href="/challenges/<%= @handle %>"> Go back</a>
 </div>
+

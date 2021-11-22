@@ -33,7 +33,12 @@ class UserAuthenticationController < ApplicationController
   end
 
   def sign_up_form
+
+    if session[:user_id] 
+      redirect_to("/challenges", { :notice => "You already have an account 💪" })
+    else
     render({ :template => "user_authentication/sign_up.html.erb" })
+    end
   end
 
   def create
@@ -67,7 +72,13 @@ class UserAuthenticationController < ApplicationController
     @user.password = params.fetch("query_password")
     @user.password_confirmation = params.fetch("query_password_confirmation")
     @user.is_premium = false # initialize as false
-    @user.profile_picture = params.fetch("query_profile_picture")
+
+    if params.has_key?("query_profile_picture")
+
+      @user.profile_picture =  params.fetch("query_profile_picture") 
+    #else
+    #  @user.profile_picture = @current_user.profile_picture
+    end
     @user.bio = params.fetch("query_bio")
     @user.username = params.fetch("query_username")
     

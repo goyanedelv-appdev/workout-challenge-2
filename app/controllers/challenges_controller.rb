@@ -126,7 +126,20 @@ class ChallengesController < ApplicationController
     @the_challenge.starting_time = params.fetch("query_starting_time")
     @the_challenge.ending_time = params.fetch("query_ending_time")
     @the_challenge.challenge_name = params.fetch("query_challenge_name")
-    @the_challenge.challenge_image = params.fetch("query_challenge_image")
+
+    # @the_challenge.challenge_image = params.fetch("query_challenge_image")
+    
+    
+    
+    if params.has_key?("query_challenge_image")
+
+      @the_challenge.profile_picture =  params.fetch("query_challenge_image") 
+    #else
+    #  @the_challenge.profile_picture = @the_challenge.profile_picture
+    end
+
+
+    
     @the_challenge.removal_policy = params.fetch("query_removal_policy")
     @the_challenge.new_user_policy = params.fetch("query_new_user_policy")
     @the_challenge.penalty_policy = params.fetch("query_penalty_policy")
@@ -224,6 +237,15 @@ class ChallengesController < ApplicationController
     @the_challenge = Challenge.where( :challenge_handle => handle).at(0)
 
     render({ :template => "challenges/join.html.erb" })
+  end
+
+  def teams
+    handle = params.fetch("handle")
+    user_id = @current_user.id
+
+    @the_challenge = Challenge.where( :challenge_handle => handle).at(0)
+
+    render({ :template => "challenges/teams.html.erb" })
   end
 
 

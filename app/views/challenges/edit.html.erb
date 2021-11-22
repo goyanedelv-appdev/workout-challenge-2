@@ -9,8 +9,7 @@
           Starting time
         </label>
 
-        <input type="datetime-local" id="starting_time_box" name="query_starting_time"
-         value="<%= @the_challenge.starting_time %>">
+        <input type="datetime-local" id="starting_time_box" name="query_starting_time" value="<%= @the_challenge.starting_time %>">
       </div>
 
       <div>
@@ -44,6 +43,14 @@
 
         <input type="text" id="removal_policy_box" name="query_removal_policy" value="<%= @the_challenge.removal_policy %>">
       </div>
+      <ul>
+        <li>
+          1: No week will be removed from the final score
+        </li>
+        <li>
+          2: Worst week will be removed from the final score
+        </li>
+      </ul>
 
       <div>
         <label for="new_user_policy_box">
@@ -52,6 +59,15 @@
 
         <input type="text" id="new_user_policy_box" name="query_new_user_policy" value="<%= @the_challenge.new_user_policy %>">
       </div>
+      <ul>
+        <li>
+          1: Only admins can add new participants
+        </li>
+        <li>
+          2: New participants cannot be added
+        </li>
+      </ul>
+
 
       <div>
         <label for="penalty_policy_box">
@@ -60,14 +76,23 @@
 
         <input type="text" id="penalty_policy_box" name="query_penalty_policy" value="<%= @the_challenge.penalty_policy %>">
       </div>
+      <ul>
+        <li>
+          1: No penalties
+        </li>
+        <li>
+          2: If minimum workout is not met, a penalty applies
+        </li>
+      </ul>
 
       <div>
         <label for="workout_perday_policy_box">
-          Workout perday policy
+          Workout per week policy
         </label>
 
         <input type="text" id="workout_perday_policy_box" name="query_workout_perday_policy" value="<%= @the_challenge.workout_perday_policy %>">
       </div>
+      <p> Minimum workout sessions per week required</p>
 
       <div>
         <label for="workout_criteria_box">
@@ -76,6 +101,14 @@
 
         <input type="text" id="workout_criteria_box" name="query_workout_criteria" value="<%= @the_challenge.workout_criteria %>">
       </div>
+      <ul>
+        <li>
+          1: Standard: 30 min or 300 calories
+        </li>
+        <li>
+          2: Brutal: 1 hour or 600 calories
+        </li>
+      </ul>
 
       <div>
         <label for="prize_policy_box">
@@ -108,6 +141,17 @@
 
         <input type="text" id="challenge_type_box" name="query_challenge_type" value="<%= @the_challenge.challenge_type %>">
       </div>
+         <ul>
+        <li>
+          1: Team's battle
+        </li>
+        <li>
+          2: Duel
+        </li>
+        <li>
+          3: Shadow fight
+        </li>
+      </ul>
 
       <button class = "button">
         Update challenge
