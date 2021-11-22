@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get("/challenges/:handle/new", { :controller => "photoworkouts", :action => "new" })
           
   # READ
-  get("/photoworkouts", { :controller => "photoworkouts", :action => "index" })
+  # get("/photoworkouts", { :controller => "photoworkouts", :action => "index" })
   
   get("/photoworkouts/:path_id", { :controller => "photoworkouts", :action => "show" })
   
@@ -49,16 +49,16 @@ Rails.application.routes.draw do
   post("/insert_team", { :controller => "teams", :action => "create" })
           
   # READ
-  get("/teams", { :controller => "teams", :action => "index" })
+  #get("/teams", { :controller => "teams", :action => "index" })
   
-  get("/teams/:path_id", { :controller => "teams", :action => "show" })
+  #get("/teams/:path_id", { :controller => "teams", :action => "show" })
   
   # UPDATE
   
   post("/modify_team/:path_id", { :controller => "teams", :action => "update" })
   
   # DELETE
-  get("/delete_team/:path_id", { :controller => "teams", :action => "destroy" })
+  #get("/delete_team/:path_id", { :controller => "teams", :action => "destroy" })
 
   #------------------------------
 
