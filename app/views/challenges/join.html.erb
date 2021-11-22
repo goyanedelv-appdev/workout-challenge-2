@@ -1,0 +1,25 @@
+  <div style="width:80%; margin:0 auto;">
+    <h2>
+      Join a challenge
+    </h2>
+
+    <hr>
+
+    <p> Would you like to join #<%= @the_challenge.challenge_handle%>?</p>
+
+    
+    <table width="400px">
+      <tr>
+        <td >
+          <a href="/challenges/<%= @the_challenge.challenge_handle%>/insert_participation" class="button"> Join! </a>
+        </td>
+
+        <td >
+          <a href="/challenges" class="button"> Decline </a>
+        </td>
+
+      </tr>
+
+    </table>
+
+  <div>

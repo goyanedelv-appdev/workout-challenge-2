@@ -64,7 +64,7 @@ Rails.application.routes.draw do
   # Routes for the Participation resource:
 
   # CREATE
-  post("/insert_participation", { :controller => "participations", :action => "create" })
+  get("/challenges/:handle/insert_participation", { :controller => "participations", :action => "create" })
           
   # READ
   get("/participations", { :controller => "participations", :action => "index" })
@@ -95,7 +95,13 @@ Rails.application.routes.draw do
 
   get("/challenges/:handle/edit", { :controller => "challenges", :action => "edit" })
 
+  get("/challenges/:handle/invite", { :controller => "challenges", :action => "invite" })
 
+  get("/challenges/:handle/rules", { :controller => "challenges", :action => "rules" })
+
+  get("/challenges/:handle/stats", { :controller => "challenges", :action => "stats" })
+
+  get("/challenges/:handle/join", { :controller => "challenges", :action => "join" })
 
   # UPDATE
   

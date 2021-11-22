@@ -119,7 +119,6 @@ class ChallengesController < ApplicationController
   end
 
   def edit
-
     handle = params.fetch("handle")
     user_id = @current_user.id
 
@@ -134,5 +133,41 @@ class ChallengesController < ApplicationController
       render({ :template => "challenges/edit.html.erb" })
     end
   end
+
+  def invite
+    handle = params.fetch("handle")
+    user_id = @current_user.id
+
+    @the_challenge = Challenge.where( :challenge_handle => handle).at(0)
+    challenge_id = @the_challenge.id
+
+    verifly = Privilege.where({:challenge_id => challenge_id}).where({:user_id => user_id}).at(0)
+    
+    if verifly == nil
+      redirect_to("/challenges/#{handle}", { :alert => "You don't have the privilege to invite players to this challenge"} )
+    else
+      render({ :template => "challenges/invite.html.erb" })
+    end
+  end
+
+  def rules
+
+    render({ :template => "challenges/rules.html.erb" })
+  end
+
+  def stats
+
+    render({ :template => "challenges/stats.html.erb" })
+  end
+
+  def join
+    handle = params.fetch("handle")
+    user_id = @current_user.id
+
+    @the_challenge = Challenge.where( :challenge_handle => handle).at(0)
+
+    render({ :template => "challenges/join.html.erb" })
+  end
+
 
 end

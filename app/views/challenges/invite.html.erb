@@ -1,0 +1,52 @@
+<div style="width:80%; margin:0 auto;">
+  <h2>
+    Invite friends to #<%= @the_challenge.challenge_handle %>!
+  </h2>
+  <hr>
+  <p>
+    To invite yours friends to #<%= @the_challenge.challenge_handle %>, send them the link below:
+  </p>
+
+  <code>
+    https://3000-peach-scorpion-5wdkcuwu.ws-us18.gitpod.io/challenges/<%= @the_challenge.challenge_handle %>/join
+  </code>
+  <p>
+    <a href="https://3000-peach-scorpion-5wdkcuwu.ws-us18.gitpod.io/challenges/<%= @the_challenge.challenge_handle %>/join" onclick="copyURI(event)">Copy URL to clipboard</a>
+  </p>
+
+  <p>
+    Or, share it via WhatsApp.
+  </p>
+
+    <input class="mobileShow" type="text" name="message" value="https://3000-peach-scorpion-5wdkcuwu.ws-us18.gitpod.io/challenges/<%= @the_challenge.challenge_handle %>/join" readonly>
+    <button onclick="share()" class="mobileShow"> Share to WhatsApp </button>
+
+  <hr>
+  <a href="/challenges/<%= @the_challenge.challenge_handle %>"> Go back</a>
+
+</div>
+
+
+<script>
+  function copyURI(evt) {
+      evt.preventDefault();
+      navigator.clipboard.writeText(evt.target.getAttribute('href')).then(() => {
+        /* clipboard successfully set */
+      }, () => {
+        /* clipboard write failed */
+      });
+  }
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js">   
+</script>
+
+<script>   
+  // User-defined function to share some message on WhatsApp   
+  function share() {   
+      // collet the user input   
+      var message = $("input[name=message]").val();   
+              // JavaScript function to open URL in new window   
+      window.open( "whatsapp://send?text=" + message, '_blank');   
+  }
+</script>

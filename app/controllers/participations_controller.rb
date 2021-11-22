@@ -1,4 +1,6 @@
 class ParticipationsController < ApplicationController
+  
+  # TO BE DELETED
   def index
     matching_participations = Participation.all
 
@@ -7,6 +9,7 @@ class ParticipationsController < ApplicationController
     render({ :template => "participations/index.html.erb" })
   end
 
+  # TO BE DELETED
   def show
     the_id = params.fetch("path_id")
 
@@ -17,20 +20,34 @@ class ParticipationsController < ApplicationController
     render({ :template => "participations/show.html.erb" })
   end
 
-  def create
+  # IN USE
+  def create # Create a participation from the shared link
+    
     the_participation = Participation.new
-    the_participation.user_id = params.fetch("query_user_id")
-    the_participation.challenge_id = params.fetch("query_challenge_id")
-    the_participation.team_id = params.fetch("query_team_id")
+    handle = params.fetch("handle")
+    challenge_id = Challenge.where({:challenge_handle => handle}).at(0).id
+    tim = Participation.where({:challenge_id => challenge_id}).at(0).team_id
+    
+    verifly = Participation.where({:user_id => @current_user.id}).where({:challenge_id => challenge_id }).at(0)
+    
+    if verifly == nil
+    
+      the_participation.user_id = @current_user.id
+      the_participation.challenge_id = challenge_id
+      the_participation.team_id = tim
 
-    if the_participation.valid?
-      the_participation.save
-      redirect_to("/participations", { :notice => "Participation created successfully." })
+      if the_participation.valid?
+        the_participation.save
+        redirect_to("/challenges/#{handle}", { :notice => "You joined the challenge succesfully" })
+      else
+        redirect_to("/challenges", { :alert => "You failed to join the challenge." })
+      end
     else
-      redirect_to("/participations", { :notice => "Participation failed to create successfully." })
+      redirect_to("/challenges/#{handle}", { :alert => "You are already in the challenge. No need to join again!" })
     end
   end
 
+  # TO BE DELETED
   def update
     the_id = params.fetch("path_id")
     the_participation = Participation.where({ :id => the_id }).at(0)
@@ -41,12 +58,13 @@ class ParticipationsController < ApplicationController
 
     if the_participation.valid?
       the_participation.save
-      redirect_to("/participations/#{the_participation.id}", { :notice => "Participation updated successfully."} )
+      redirect_to("/challenges/#{the_participation.id}", { :notice => "Participation updated successfully."} )
     else
       redirect_to("/participations/#{the_participation.id}", { :alert => "Participation failed to update successfully." })
     end
   end
 
+  # MIGHT USE IT
   def destroy
     the_id = params.fetch("path_id")
     the_participation = Participation.where({ :id => the_id }).at(0)
