@@ -176,7 +176,7 @@ class ChallengesController < ApplicationController
     handle = params.fetch("handle")
     user_id = @current_user.id
 
-    @the_challenge = Challenge.where( :challenge_handle => handle).at(0)
+    @the_challenge = Challenge.where( {:challenge_handle => handle}).at(0)
     challenge_id = @the_challenge.id
 
     verifly = Privilege.where({:challenge_id => challenge_id}).where({:user_id => user_id}).at(0)
@@ -192,7 +192,7 @@ class ChallengesController < ApplicationController
     handle = params.fetch("handle")
     user_id = @current_user.id
 
-    @the_challenge = Challenge.where( :challenge_handle => handle).at(0)
+    @the_challenge = Challenge.where( {:challenge_handle => handle}).at(0)
     challenge_id = @the_challenge.id
 
     verifly = Privilege.where({:challenge_id => challenge_id}).where({:user_id => user_id}).at(0)
@@ -208,7 +208,7 @@ class ChallengesController < ApplicationController
     handle = params.fetch("handle")
     user_id = @current_user.id
 
-    @the_challenge = Challenge.where( :challenge_handle => handle).at(0)
+    @the_challenge = Challenge.where( {:challenge_handle => handle}).at(0)
 
 
     @challenge_type = dictionary("challenge_type", @the_challenge.challenge_type)
@@ -225,7 +225,7 @@ class ChallengesController < ApplicationController
   def stats
     handle = params.fetch("handle")
 
-    @the_challenge = Challenge.where( :challenge_handle => handle).at(0)
+    @the_challenge = Challenge.where( {:challenge_handle => handle}).at(0)
 
     render({ :template => "challenges/stats.html.erb" })
   end
@@ -234,16 +234,21 @@ class ChallengesController < ApplicationController
     handle = params.fetch("handle")
     user_id = @current_user.id
 
-    @the_challenge = Challenge.where( :challenge_handle => handle).at(0)
+    @the_challenge = Challenge.where( {:challenge_handle => handle}).at(0)
 
     render({ :template => "challenges/join.html.erb" })
   end
 
   def teams
-    handle = params.fetch("handle")
+    @handle = params.fetch("handle")
     user_id = @current_user.id
 
-    @the_challenge = Challenge.where( :challenge_handle => handle).at(0)
+    @the_challenge = Challenge.where( {:challenge_handle => @handle}).at(0)
+
+    @participants = Participation.where( {:challenge_id => @the_challenge.id}).order({ :team_id => :asc })
+
+    @tims = Team.where({:challenge_id => @the_challenge.id}).order({ :team_id => :asc })
+
 
     render({ :template => "challenges/teams.html.erb" })
   end

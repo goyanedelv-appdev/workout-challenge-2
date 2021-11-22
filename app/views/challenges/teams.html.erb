@@ -5,7 +5,54 @@
 
     <hr>
 
-    <p> Teams gonna be here</p>
+    <div>
+      <table width="400px">
+        <tr>
+          <th>
+            Username
+          </th>
+
+          <th>
+            Team
+          </th>
+
+          <th>
+            Update!
+          </th>
+        </tr>
+        <% @participants.each do |participant| %>
+          <tr>
+            <td>
+              @<%= participant.user.username %>
+            </td>
+
+            <td>
+              <%= participant.team.team_name	 %>
+            </td>
+
+            <td>
+                <form action="/challenges/<%= @handle %>/modify_participation/" method="post">
+                  <select id="team" name="query_team_id">
+                    <% @tims.each do |team|%>
+                      <% if participant.team.team_name == team.team_name%>
+                        <option value=<%=team.id%> selected><%= team.team_name%></option>
+                        <% else %>
+                        <option value=<%=team.id%>><%= team.team_name%></option>
+                      <% end %>
+
+                    <% end %>
+                  </select>
+                  <input type="hidden" name="query_that_user" value=<%=participant.user_id %> />
+                  <button> Update!</button>
+                </form>
+            </td>
+
+          </tr>
+        <% end %>
+      </table>
+    </div>
+
+
   <hr>
   <a href="/challenges/<%= @the_challenge.challenge_handle %>"> Go back</a>
 

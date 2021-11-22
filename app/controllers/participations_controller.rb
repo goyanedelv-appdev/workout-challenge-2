@@ -47,20 +47,23 @@ class ParticipationsController < ApplicationController
     end
   end
 
-  # TO BE DELETED
+  # IN USE!
   def update
-    the_id = params.fetch("path_id")
-    the_participation = Participation.where({ :id => the_id }).at(0)
+    @handle = params.fetch("handle")
 
-    the_participation.user_id = params.fetch("query_user_id")
-    the_participation.challenge_id = params.fetch("query_challenge_id")
+    the_id = Challenge.where({:challenge_handle => @handle}).at(0).id
+
+    that_user = params.fetch("query_that_user")
+
+    the_participation = Participation.where({ :challenge_id => the_id }).where({:user_id => that_user}).at(0)
+
     the_participation.team_id = params.fetch("query_team_id")
 
     if the_participation.valid?
       the_participation.save
-      redirect_to("/challenges/#{the_participation.id}", { :notice => "Participation updated successfully."} )
+      redirect_to("/challenges/#{@handle}/teams", { :notice => "Teams updated successfully."} )
     else
-      redirect_to("/participations/#{the_participation.id}", { :alert => "Participation failed to update successfully." })
+      redirect_to("/challenges/#{@handle}/teams", { :alert => "Teams failed to update successfully." })
     end
   end
 
