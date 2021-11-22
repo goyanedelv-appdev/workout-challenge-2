@@ -1,10 +1,26 @@
+<style>
+  .gtext {
+      color: white;
+      font-family: "Helvetica";
+  }
 
+  .pwrap {
+    word-break: break-all;
+    white-space: normal;
+  }
+
+    .gcomment {
+      color: black;
+      font-family: "Helvetica";
+  }
+
+</style>
 
 
 <div style="width:80%; margin:0 auto;">
   <div>
     <h1>
-      Hello, <%= @current_user.username %>!
+      Hello, @<%= @current_user.username %>!
     </h1>
   </div>
 
@@ -22,6 +38,13 @@
 
         <!-- tr-->
         <div>
+          <table width="320px">
+            <tr bgcolor="royalblue">
+              <td class="gtext">
+                🥇 #<%= participation.challenge.challenge_handle %>
+              </td>
+            </tr>
+          </table>
           <a href="/challenges/<%= participation.challenge.challenge_handle %>">
             <div class="img__wrap">
               <img class="img__img" src="<%= participation.challenge.challenge_image %>" height="200" width="320"/>

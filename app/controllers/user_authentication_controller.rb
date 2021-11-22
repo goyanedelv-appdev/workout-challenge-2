@@ -42,23 +42,33 @@ class UserAuthenticationController < ApplicationController
   end
 
   def create
-    @user = User.new
-    @user.email = params.fetch("query_email")
-    @user.password = params.fetch("query_password")
-    @user.password_confirmation = params.fetch("query_password_confirmation")
-    @user.is_premium = false # params.fetch("query_is_premium", false)
-    @user.profile_picture = params.fetch("query_profile_picture")
-    @user.bio = params.fetch("query_bio")
-    @user.username = params.fetch("query_username")
- 
-    save_status = @user.save
 
-    if save_status == true
-      session[:user_id] = @user.id
-   
-      redirect_to("/challenges", { :notice => "User account created successfully."})
+    q_email = params.fetch("query_email")
+    q_username = params.fetch("query_username")
+
+    if User.exists?(email: q_email)
+      redirect_to("/user_sign_up", { :alert => "That email already exists. If you forgot your password, well, you are screwed because I didn't programmed a recovery flow 🤣"})
+    elsif User.exists?(username: q_username)
+      redirect_to("/user_sign_up", { :alert => "That username already exists. Come on, be more creative 🧠"})
     else
-      redirect_to("/user_sign_up", { :alert => "User account failed to create successfully."})
+      @user = User.new
+      @user.email = params.fetch("query_email")
+      @user.password = params.fetch("query_password")
+      @user.password_confirmation = params.fetch("query_password_confirmation")
+      @user.is_premium = false # params.fetch("query_is_premium", false)
+      @user.profile_picture = params.fetch("query_profile_picture")
+      @user.bio = params.fetch("query_bio")
+      @user.username = params.fetch("query_username")
+  
+      save_status = @user.save
+
+      if save_status == true
+        session[:user_id] = @user.id
+    
+        redirect_to("/challenges", { :notice => "User account created successfully."})
+      else
+        redirect_to("/user_sign_up", { :alert => "User account failed to create successfully."})
+      end
     end
   end
     

@@ -52,6 +52,7 @@ class ChallengesController < ApplicationController
 
       @list_of_participations = matching_participations.order({ :created_at => :desc })
 
+
       render({ :template => "challenges/index.html.erb" })
     end
   end
@@ -251,7 +252,13 @@ class ChallengesController < ApplicationController
 
     @verifly = Privilege.where({:challenge_id => @the_challenge.id})
 
-    render({ :template => "challenges/teams.html.erb" })
+    verifly_2 = Privilege.where({:challenge_id => @the_challenge.id}).where({:user_id => user_id}).at(0)
+    
+    if verifly_2 == nil
+      redirect_to("/challenges/#{@handle}", { :alert => "You don't have the privilege to edit teams"} )
+    else
+      render({ :template => "challenges/teams.html.erb" })
+    end
   end
 
 
