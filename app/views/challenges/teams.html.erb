@@ -19,6 +19,10 @@
           <th>
             Update!
           </th>
+          
+          <th>
+            Admin
+          </th>
         </tr>
         <% @participants.each do |participant| %>
           <tr>
@@ -45,6 +49,14 @@
                   <input type="hidden" name="query_that_user" value=<%=participant.user_id %> />
                   <button> Update!</button>
                 </form>
+            </td>
+
+            <td>
+              <% if not @verifly.where({:user_id => participant.user_id}).at(0) %>
+                <a href="/challenges/<%= @handle %>/<%= participant.user_id%>/insert_privilege"> Make admin</a>
+              <% else %>
+                <a href="/challenges/<%= @handle %>/<%= participant.user_id%>/delete_privilege"> Un-admin</a>
+              <% end %>
             </td>
 
           </tr>

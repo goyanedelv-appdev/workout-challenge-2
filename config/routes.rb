@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   
   get("/photoworkouts/:path_id", { :controller => "photoworkouts", :action => "show" })
   
+  get("/photoworkouts/:handle/:path_id/add_like", { :controller => "photoworkouts", :action => "like" })
+
   # UPDATE
   
   post("/modify_photoworkout/:path_id", { :controller => "photoworkouts", :action => "update" })
@@ -26,19 +28,18 @@ Rails.application.routes.draw do
   # Routes for the Privilege resource:
 
   # CREATE
-  post("/insert_privilege", { :controller => "privileges", :action => "create" })
+  get("/challenges/:handle/:user_id/insert_privilege", { :controller => "privileges", :action => "create" })
           
   # READ
-  get("/privileges", { :controller => "privileges", :action => "index" })
+  # get("/privileges", { :controller => "privileges", :action => "index" })
   
-  get("/privileges/:path_id", { :controller => "privileges", :action => "show" })
+  # get("/privileges/:path_id", { :controller => "privileges", :action => "show" })
   
   # UPDATE
-  
-  post("/modify_privilege/:path_id", { :controller => "privileges", :action => "update" })
+  # post("/modify_privilege/:path_id", { :controller => "privileges", :action => "update" })
   
   # DELETE
-  get("/delete_privilege/:path_id", { :controller => "privileges", :action => "destroy" })
+  get("/challenges/:handle/:user_id/delete_privilege", { :controller => "privileges", :action => "destroy" })
 
   #------------------------------
 
@@ -67,9 +68,9 @@ Rails.application.routes.draw do
   get("/challenges/:handle/insert_participation", { :controller => "participations", :action => "create" })
           
   # READ
-  get("/participations", { :controller => "participations", :action => "index" })
+  # get("/participations", { :controller => "participations", :action => "index" })
   
-  get("/participations/:path_id", { :controller => "participations", :action => "show" })
+  # get("/participations/:path_id", { :controller => "participations", :action => "show" })
   
   # UPDATE
   

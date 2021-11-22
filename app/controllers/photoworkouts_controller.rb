@@ -81,4 +81,16 @@ class PhotoworkoutsController < ApplicationController
 
     redirect_to("/photoworkouts", { :notice => "Photoworkout deleted successfully."} )
   end
+
+  def like
+    handle = params.fetch("handle")
+
+    the_id = params.fetch("path_id")
+    the_photoworkout = Photoworkout.where({ :id => the_id }).at(0)
+
+    the_photoworkout.likes_count = the_photoworkout.likes_count + 1
+    the_photoworkout.save
+
+    redirect_to("/challenges/#{handle}", { :notice => "You gave power 💪! You can give it again 😜!"} )
+  end
 end

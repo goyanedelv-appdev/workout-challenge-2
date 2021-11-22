@@ -73,8 +73,17 @@
             </td>
 
             <td align="right" class="gtext">
-              <%= time_ago_in_words(workout.created_at) %> |
-              <%= workout.likes_count%> <a href="/add_like"> ❤️</a>
+              <%= time_ago_in_words(workout.created_at) %> ago | <%= workout.likes_count%>
+
+              <% if workout.likes_count == 0%>
+                <a href="/photoworkouts/<%=@the_challenge.challenge_handle%>/<%=workout.id%>/add_like"> ❤️</a>
+              <% elsif workout.likes_count < 5%>
+                <a href="/photoworkouts/<%=@the_challenge.challenge_handle%>/<%=workout.id%>/add_like"> 💪</a>
+              <% elsif workout.likes_count < 10%>
+                <a href="/photoworkouts/<%=@the_challenge.challenge_handle%>/<%=workout.id%>/add_like"> 🦾</a>
+              <% else %>
+                <a href="/photoworkouts/<%=@the_challenge.challenge_handle%>/<%=workout.id%>/add_like"> 🔥</a>
+              <% end%>
             </td>
           </tr>
 

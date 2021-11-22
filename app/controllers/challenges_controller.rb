@@ -249,6 +249,7 @@ class ChallengesController < ApplicationController
 
     @tims = Team.where({:challenge_id => @the_challenge.id}).order({ :team_id => :asc })
 
+    @verifly = Privilege.where({:challenge_id => @the_challenge.id})
 
     render({ :template => "challenges/teams.html.erb" })
   end
