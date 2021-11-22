@@ -1,4 +1,45 @@
 class ChallengesController < ApplicationController
+  
+  # Mega dictionary
+  def dictionary(rule, value)
+
+    if rule == "challenge_type"
+      hash_1 = Hash["1" => "Teams battle", "2" => "Duel", "3" => "Shadow fight"]
+      return hash_1[value.to_s]
+
+    elsif rule == "removal_policy"
+      hash_2 = Hash["1" => "No week will be removed from the final score", "2" =>"Worst week will be removed from the final score"]
+      return hash_2[value.to_s]
+
+    elsif rule == "new_participants_policy"
+      hash_3 = Hash["1" => "Only admins can add new participants", "2" =>"New participants cannot be added"]
+      return hash_3[value.to_s]
+
+    elsif rule == "minimum_wkt_policy"
+      hash_4 = Hash["0" => "No minimum",
+                   "1" =>"At least 1",
+                   "2" =>"At least 2",
+                   "3" =>"At least 3",
+                   "4" =>"At least 4",
+                   "5" =>"At least 5",
+                   "6" =>"At least 6"]
+      return hash_4[value.to_s]
+
+    elsif rule == "penalty_policy"
+      hash_5 = Hash["1" => "No penalties",
+                    "2" => "If minimum workout is not met, a penalty applies"]
+      return hash_5[value.to_s]
+
+    elsif rule == "criteria_policy"
+      hash_6 = Hash["1" => "Standard: 30 min or 300 calories",
+                    "2" => "Brutal: 1 hour or 600 calories"]
+      return hash_6[value.to_s]
+    end
+    
+  end
+  
+  
+  
   def index
     if @current_user == nil
       redirect_to("/user_sign_in") # add a notice
@@ -151,11 +192,27 @@ class ChallengesController < ApplicationController
   end
 
   def rules
+    handle = params.fetch("handle")
+    user_id = @current_user.id
+
+    @the_challenge = Challenge.where( :challenge_handle => handle).at(0)
+
+
+    @challenge_type = dictionary("challenge_type", @the_challenge.challenge_type)
+    @removal_policy = dictionary("removal_policy", @the_challenge.removal_policy)
+    @new_participants = dictionary("new_participants_policy", @the_challenge.new_user_policy)
+    @minimum_wkt = dictionary("minimum_wkt_policy", @the_challenge.workout_perday_policy)
+    @penalty_policy = dictionary("penalty_policy", @the_challenge.penalty_policy)
+    @criteria_policy = dictionary("criteria_policy", @the_challenge.workout_criteria)
+
 
     render({ :template => "challenges/rules.html.erb" })
   end
 
   def stats
+    handle = params.fetch("handle")
+
+    @the_challenge = Challenge.where( :challenge_handle => handle).at(0)
 
     render({ :template => "challenges/stats.html.erb" })
   end

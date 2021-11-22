@@ -1,0 +1,71 @@
+  <div style="width:80%; margin:0 auto;">
+    <h2>
+      Rules of #<%= @the_challenge.challenge_handle %>
+    </h2>
+
+    <hr>
+  
+    <div>
+      <h4>Long name</h4>
+        <p> &emsp; <%= @the_challenge.challenge_name %></p>
+    </div>
+
+    <div>
+      <h4>Starting time</h4>
+        <p> &emsp; <%= @the_challenge.starting_time %></p>
+    </div>
+
+    <div>
+      <h4>Ending time</h4>
+        <p> &emsp; <%= @the_challenge.ending_time %></p>
+    </div>
+
+    <div>
+      <h4>Challenge type</h4>
+        <p> &emsp; <%= @challenge_type %></p>
+    </div>
+  
+    <div>
+      <h4>Number of teams</h4>
+        <p> &emsp; <%= @the_challenge.number_of_teams %></p>
+    </div>
+
+    <div>
+      <h4>Removal policy</h4>
+        <p> &emsp; <%= @removal_policy %></p>
+    </div>
+
+    <div>
+      <h4>New participants policy</h4>
+        <p> &emsp; <%= @new_participants %></p>
+    </div>
+
+    <div>
+      <h4>Minimum workout policy</h4>
+        <p> &emsp; <%= @minimum_wkt %></p>
+    </div>
+
+    <div>
+      <h4>Penalty policy</h4>
+        <p> &emsp; <%= @penalty_policy %></p>
+    </div>
+
+    <div>
+      <h4>Criteria policy </h4>
+        <p> &emsp; <%= @criteria_policy %></p>
+    </div>
+
+    <div>
+      <h4>Prize  </h4>
+        <p> &emsp; <%= @the_challenge.prize_policy %></p>
+    </div>
+
+    <div>
+      <h4>Challenge Image </h4>
+        <p> <img src="<%= @the_challenge.challenge_image %>" width="400px"></p>
+    </div>
+  
+  <hr>
+  <a href="/challenges/<%= @the_challenge.challenge_handle %>"> Go back</a>
+
+  <div>
