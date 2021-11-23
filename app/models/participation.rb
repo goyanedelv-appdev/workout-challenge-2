@@ -17,4 +17,5 @@ class Participation < ApplicationRecord
 
   belongs_to(:team, { :required => true, :class_name => "Team", :foreign_key => "team_id" })
   
+  # has_many(:photoworkout, { :through => :user, :source => :photoworkouts })
 end

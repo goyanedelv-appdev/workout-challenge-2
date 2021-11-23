@@ -25,4 +25,5 @@ class User < ApplicationRecord
 
   mount_uploader :profile_picture, UserAvatarUploader
 
+  #belongs_to :photoworkout
 end

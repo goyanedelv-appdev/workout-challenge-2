@@ -227,6 +227,23 @@ class ChallengesController < ApplicationController
     handle = params.fetch("handle")
 
     @the_challenge = Challenge.where( {:challenge_handle => handle}).at(0)
+    photoworkouts = Photoworkout.where({:challenge_id => @the_challenge.id})
+    # teams = Team.where({ :challenge_id => @the_challenge.id})
+    # participants = Participation.where({ :challenge_id => the_challenge.id})
+
+    upp = Participation.joins(:user).where("participations.user_id = users.id").where({:challenge_id => @the_challenge.id})
+
+    @uppt = upp.joins(:team).where("participations.team_id = teams.id")
+
+    @merged_data_1 = photoworkouts.joins(:user).where("photoworkouts.user_id = users.id")
+
+    # # # # # # # # # # # # # # # # # # # # # #
+    # A = Photoworkout.joins(:user)  # 
+    # B = Participation.joins(:team) #
+    # C = Participation.joins(:user)
+    # D = C.joins(:team)
+
+    # Participation.joins(:user).joins(:team)
 
     render({ :template => "challenges/stats.html.erb" })
   end
