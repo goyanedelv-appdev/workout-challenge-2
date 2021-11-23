@@ -23,5 +23,4 @@ class Photoworkout < ApplicationRecord
   # has_many :users
   # has_many :teams
   #belongs_to(:team, { :required => true, :class_name => "Team", :foreign_key => "user_id" })
-  belongs_to :team, :through => :participation
 end
