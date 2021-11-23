@@ -41,9 +41,9 @@ class TeamsController < ApplicationController
 
     if the_team.valid?
       the_team.save
-      redirect_to("/teams/#{the_team.id}", { :notice => "Team updated successfully."} )
+      redirect_to("/challenges/#{the_team.id}", { :notice => "Team updated successfully."} )
     else
-      redirect_to("/teams/#{the_team.id}", { :alert => "Team failed to update successfully." })
+      redirect_to("/challenges/#{the_team.id}", { :alert => "Team failed to update successfully." })
     end
   end
 

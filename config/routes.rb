@@ -77,7 +77,7 @@ Rails.application.routes.draw do
   post("challenges/:handle/modify_participation/", { :controller => "participations", :action => "update" })
   
   # DELETE
-  get("/delete_participation/:path_id", { :controller => "participations", :action => "destroy" })
+  #get("/delete_participation/:path_id", { :controller => "participations", :action => "destroy" })
 
   #------------------------------
 

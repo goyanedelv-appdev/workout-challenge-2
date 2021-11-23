@@ -1,3 +1,8 @@
+  <style>
+    p.solid {border-style: solid; border-color: red;}
+  </style>
+  
+  
   <div style="width:90%; margin:0 auto;">
     <h2>
       Edit challenge
@@ -158,8 +163,21 @@
       </button>
     </form>
 
+<hr>
+
+    <h2>
+      Delete challenge
+    </h2>
+
+    <p class="solid">
+      Danger zone
+
+      <a href="/delete_challenge/<%= @the_challenge.id%>" class="button"> Delete #<%=@the_challenge.challenge_handle %> </a>
+    </p>
+
       <hr>
   <a href="/challenges/<%= @the_challenge.challenge_handle %>"> Go back</a>
+      
         <hr>
 
   </div>
