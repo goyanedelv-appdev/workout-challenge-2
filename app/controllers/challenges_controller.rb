@@ -245,9 +245,9 @@ class ChallengesController < ApplicationController
     # teams = Team.where({ :challenge_id => @the_challenge.id})
     # participants = Participation.where({ :challenge_id => the_challenge.id})
 
-    upp = Participation.joins(:user).where("participations.user_id = users.id").where({:challenge_id => @the_challenge.id})
+    #upp = Participation.joins(:user).where("participations.user_id = users.id").where({:challenge_id => @the_challenge.id})
 
-    @uppt = upp.joins(:team).where("participations.team_id = teams.id")
+    #@uppt = upp.joins(:team).where("participations.team_id = teams.id")
 
     @merged_data_1 = photoworkouts.joins(:user).where("photoworkouts.user_id = users.id")
 
