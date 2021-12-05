@@ -17,7 +17,7 @@
 </style>
 
 
-<div style="width:90%; margin:0 auto;">
+<div style="width:90%; margin:0 auto;" align="center">
   <div>
     <h1>
       Hello, @<%= @current_user.username %>!
@@ -38,7 +38,7 @@
 
         <!-- tr-->
         <div>
-          <table width="320px">
+          <table width="380px">
             <tr bgcolor="royalblue">
               <td class="gtext">
                 🥇 #<%= participation.challenge.challenge_handle %>
@@ -47,8 +47,8 @@
           </table>
           <a href="/challenges/<%= participation.challenge.challenge_handle %>">
             <div class="img__wrap">
-              <img class="img__img" src="<%= participation.challenge.challenge_image %>" height="200" width="320"/>
-              <p class="img__description">Go to #<%= participation.challenge.challenge_handle %></p>
+              <img class="img__img" src="<%= participation.challenge.challenge_image %>" height="200" width="380"/>
+              <p class="img__description" align="left">Go to #<%= participation.challenge.challenge_handle %></p>
             </div>
           </a>
         </div>

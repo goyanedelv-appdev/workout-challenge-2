@@ -1,0 +1,53 @@
+<style>
+  .user {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
+
+  .one {
+    background-image: url("<%= @user.profile_picture %>");
+    border: solid;
+  }
+
+</style>
+
+
+<div style="width:90%; margin:0 auto;">
+  <p> </p>
+  <table>
+    <tr>
+      <td>
+        <div class="user one"> </div>
+      </td>
+      <td>
+        <h2>
+            @<%= @user.username %>
+        </h2>
+        <p>
+        ⭐<b>Bio</b>: <%= @user.bio %>
+        </p>
+        <p>
+        🦾<b>Workouts</b>: <%= @q_wkt %>
+        </p>
+        <p>
+         🔥<b>Level</b>: <%= @level %>
+        </p>
+      <td>
+    </tr>
+  </table>
+
+
+
+  <div>
+  
+  <hr>
+    <a href="/challenges/"> Go back</a>
+  </div>
+
+</div>

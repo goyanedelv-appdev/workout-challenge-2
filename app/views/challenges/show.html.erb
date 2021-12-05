@@ -14,9 +14,28 @@
       font-family: "Helvetica";
   }
 
+  a:link {
+  color: white;
+  }
+
+  /* visited link */
+  a:visited {
+    color: white;
+  }
+
+  /* mouse over link */
+  a:hover {
+    color: hotpink;
+  }
+
+  /* selected link */
+  a:active {
+    color: white;
+  }
+
 </style>
 
-<div  style="width:90%; margin:0 auto;">
+<div  style="width:90%; margin:0 auto;" align="center">
   <div>
     <h1>
         #<%= @the_challenge.challenge_handle %> feed
@@ -69,7 +88,7 @@
 
           <tr bgcolor="royalblue">
             <td align="left" class="gtext">
-              @<%= workout.user.username%>
+              <a href="/users/<%= workout.user.username%>">@<%= workout.user.username%> </a>
             </td>
 
             <td align="right" class="gtext">
@@ -109,8 +128,6 @@
 </div>
 
 <a href="/challenges/<%= @the_challenge.challenge_handle%>/new" class="kc_fab_main_btn">💪</a>
-
-<!--
 
 
 <hr>

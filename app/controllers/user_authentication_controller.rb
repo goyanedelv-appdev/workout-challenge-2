@@ -107,5 +107,38 @@ class UserAuthenticationController < ApplicationController
     
     redirect_to("/", { :notice => "User account cancelled" })
   end
+
+  def show_profile
+    username = params.fetch("user_handle")
+  
+    @user = User.where({ :username => username }).at(0)
+
+    if @user == nil
+      redirect_to("/challenges", { :alert => "User not found" })
+    else
+
+      photoworkouts = Photoworkout.where({:user_id => @user.id})
+      @q_wkt = photoworkouts.count
+
+      @level = "Tiny penguin"
+
+      if @q_wkt < 10
+        @level = "Tiny penguin 🐧"
+        
+      elsif @q_wkt < 20
+        @level = "Small otter 🦦"
+      elsif @q_wkt < 50
+        @level = "Growing llama 🦙"
+      elsif @q_wkt < 100
+        @level = "Big gorilla 🦍"
+      elsif @q_wkt < 200
+        @level = "Great tiger 🐆"
+      else
+        @level = "Beast 🐉"
+      end
+
+      render({ :template => "user_authentication/show_profile.html.erb" })
+    end
+  end
  
 end
