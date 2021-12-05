@@ -78,11 +78,15 @@
 
   </table>
 
+<% if @workout.user_id == @current_user.id %>
       <p class="solid">
       <a href="/delete_photoworkout/<%= @workout.id%>"> Delete workout </a>
     </p>
+<% end %>
 
 <hr>
+
+
   <a href="/challenges/<%= @the_challenge.challenge_handle %>"> Go back</a>
 </div>
 
