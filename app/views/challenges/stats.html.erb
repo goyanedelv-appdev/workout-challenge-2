@@ -6,14 +6,14 @@
     <hr>
 
 
-    <h4>Participants by team</h4>
+    <h4>Score by team</h4>
 
-  <%= column_chart @uppt.group(:team_name).count %>
+  <%= pie_chart @h %>
 
     <h4>Total workouts per participant</h4>
 
-  <%= bar_chart  @merged_data_1.group(:username).count %>
-
+  <%= bar_chart @big_table.group(:username).count.sort_by(&:last).reverse! %>
+    
 
   <hr>
   <a href="/challenges/<%= @the_challenge.challenge_handle %>"> Go back</a>

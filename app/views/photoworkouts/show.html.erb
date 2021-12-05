@@ -1,161 +1,88 @@
-<div>
-  <div>
-    <h1>
-      Photoworkout #<%= @the_photoworkout.id %> details
-    </h1>
+<style>
+  .gtext {
+      color: white;
+      font-family: "Helvetica";
+  }
 
-    <div>
-      <div>
-        <a href="/photoworkouts">
-          Go back
-        </a>
-      </div>
+  .pwrap {
+    word-break: break-all;
+    white-space: normal;
+  }
 
-      <div>
-        <a href="/delete_photoworkout/<%= @the_photoworkout.id %>">
-          Delete photoworkout
-        </a>
-      </div>
-    </div>
+    .gcomment {
+      color: black;
+      font-family: "Helvetica";
+  }
 
-    <dl>
-      <dt>
-        Caption
-      </dt>
-      <dd>
-        <%= @the_photoworkout.caption %>
-      </dd>
+</style>
+<div style="width:90%; margin:0 auto;">
+  <table>
 
-      <dt>
-        Challenge
-      </dt>
-      <dd>
-        <%= @the_photoworkout.challenge_id %>
-      </dd>
+      <!--<div style="width:80%; margin:0 auto;"> -->
+        <tr>
+          <p></p>
+        </tr>
+        <table width="380px" >
 
-      <dt>
-        User
-      </dt>
-      <dd>
-        <%= @the_photoworkout.user_id %>
-      </dd>
+          <tr bgcolor="royalblue">
+            <td align="left" class="gtext">
+              @<%= @workout.user.username%>
+            </td>
 
-      <dt>
-        Likes count
-      </dt>
-      <dd>
-        <%= @the_photoworkout.likes_count %>
-      </dd>
+            <td align="right" class="gtext">
+              <%= time_ago_in_words(@workout.created_at) %> ago | <%= @workout.likes_count%>
 
-      <dt>
-        Photo locator
-      </dt>
-      <dd>
-        <%= @the_photoworkout.photo_locator %>
-      </dd>
+              <% if @workout.likes_count == 0%>
+                <a href="/photoworkouts/<%=@the_challenge.challenge_handle%>/<%=@workout.id%>/add_like"> ❤️</a>
+              <% elsif @workout.likes_count < 5%>
+                <a href="/photoworkouts/<%=@the_challenge.challenge_handle%>/<%=@workout.id%>/add_like"> 💪</a>
+              <% elsif @workout.likes_count < 10%>
+                <a href="/photoworkouts/<%=@the_challenge.challenge_handle%>/<%=@workout.id%>/add_like"> 🦾</a>
+              <% else %>
+                <a href="/photoworkouts/<%=@the_challenge.challenge_handle%>/<%=@workout.id%>/add_like"> 🔥</a>
+              <% end%>
+            </td>
+          </tr>
 
-      <dt>
-        Calories
-      </dt>
-      <dd>
-        <%= @the_photoworkout.calories %>
-      </dd>
+        </table>
 
-      <dt>
-        Main exercise
-      </dt>
-      <dd>
-        <%= @the_photoworkout.main_exercise %>
-      </dd>
+        <tr>
+          <img src="<%= @workout.photo_locator %>" loading="lazy" width="380px"></a>
+        </tr>
+        <table width="380px" >
+          <tr >
+            <td align="left" class="gcomment">
+            <p class="pwrap">
+              💬<%= @workout.caption%>
+            </p>
+            </td>
+          </tr>
+          <tr >
+            <td align="left" class="gcomment">
+            <p class="pwrap">
+              🔥 <%= @workout.calories%> calories
+              
+            </p>
+            </td>
+          </tr>
+          <tr >
+            <td align="left" class="gcomment">
+            <p class="pwrap">
+              🏋️ Main exercise: <%= @workout.main_exercise%> 
+              
+            </p>
+            </td>
+          </tr>
+        </table>
+      <!--</div>-->
 
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_photoworkout.created_at) %> ago
-      </dd>
+  </table>
 
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_photoworkout.updated_at) %> ago
-      </dd>
-    </dl>
-  </div>
-</div>
+      <p class="solid">
+      <a href="/delete_photoworkout/<%= @workout.id%>"> Delete workout </a>
+    </p>
 
 <hr>
-
-
-<div>
-  <div>
-    <h2>
-      Edit photoworkout
-    </h2>
-
-    <form action="/modify_photoworkout/<%= @the_photoworkout.id %>"  method="post" >
-      <div>
-        <label for="caption_box">
-          Caption
-        </label>
-
-        <textarea id="caption_box" name="query_caption"><%= @the_photoworkout.caption %></textarea>
-      </div>
-
-      <div>
-        <label for="challenge_id_box">
-          Challenge
-        </label>
-
-        <input type="text" id="challenge_id_box" name="query_challenge_id" value="<%= @the_photoworkout.challenge_id %>">
-      </div>
-
-      <div>
-        <label for="user_id_box">
-          User
-        </label>
-
-        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_photoworkout.user_id %>">
-      </div>
-
-      <div>
-        <label for="likes_count_box">
-          Likes count
-        </label>
-
-        <input type="text" id="likes_count_box" name="query_likes_count" value="<%= @the_photoworkout.likes_count %>">
-      </div>
-
-      <div>
-        <label for="photo_locator_box">
-          Photo locator
-        </label>
-
-        <input type="text" id="photo_locator_box" name="query_photo_locator" value="<%= @the_photoworkout.photo_locator %>">
-      </div>
-
-      <div>
-        <label for="calories_box">
-          Calories
-        </label>
-
-        <input type="text" id="calories_box" name="query_calories" value="<%= @the_photoworkout.calories %>">
-      </div>
-
-      <div>
-        <label for="main_exercise_box">
-          Main exercise
-        </label>
-
-        <input type="text" id="main_exercise_box" name="query_main_exercise" value="<%= @the_photoworkout.main_exercise %>">
-      </div>
-
-      <button>
-        Update photoworkout
-      </button>
-    </form>
-  </div>
+  <a href="/challenges/<%= @the_challenge.challenge_handle %>"> Go back</a>
 </div>
 
-<hr>

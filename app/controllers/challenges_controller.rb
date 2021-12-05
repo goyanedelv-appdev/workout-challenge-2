@@ -148,7 +148,7 @@ class ChallengesController < ApplicationController
     
     if params.has_key?("query_challenge_image")
 
-      @the_challenge.profile_picture =  params.fetch("query_challenge_image") 
+      @the_challenge.challenge_image =  params.fetch("query_challenge_image") 
     #else
     #  @the_challenge.profile_picture = @the_challenge.profile_picture
     end
@@ -242,22 +242,22 @@ class ChallengesController < ApplicationController
 
     @the_challenge = Challenge.where( {:challenge_handle => handle}).at(0)
     photoworkouts = Photoworkout.where({:challenge_id => @the_challenge.id})
-    # teams = Team.where({ :challenge_id => @the_challenge.id})
-    # participants = Participation.where({ :challenge_id => the_challenge.id})
 
-    #upp = Participation.joins(:user).where("participations.user_id = users.id").where({:challenge_id => @the_challenge.id})
+    id = @the_challenge.id
 
-    #@uppt = upp.joins(:team).where("participations.team_id = teams.id")
+    big_joint  = photoworkouts.joins(:user, :challenge).where("photoworkouts.challenge_id =?", id).where("challenges.id =?", id)
 
-    @merged_data_1 = photoworkouts.joins(:user).where("photoworkouts.user_id = users.id")
+    @big_table = big_joint#.joins(:teams)
 
-    # # # # # # # # # # # # # # # # # # # # # #
-    # A = Photoworkout.joins(:user)  # 
-    # B = Participation.joins(:team) #
-    # C = Participation.joins(:user)
-    # D = C.joins(:team)
+    # Working!
+    tester = photoworkouts.joins(:challenge, :participations, :user).where("participations.challenge_id=?", id)
 
-    # Participation.joins(:user).joins(:team)
+    tim = Team.where({:challenge_id => id})
+    tim_dict = tim.pluck(:id, :team_name).to_h
+    a = tim_dict.values
+    b = tester.group(:team_id).count.values
+
+    @h = Hash[a.zip b]
 
     render({ :template => "challenges/stats.html.erb" })
   end

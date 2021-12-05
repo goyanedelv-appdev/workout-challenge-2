@@ -19,8 +19,6 @@ class Photoworkout < ApplicationRecord
   belongs_to(:challenge, { :required => true, :class_name => "Challenge", :foreign_key => "challenge_id" })
 
   mount_uploader :photo_locator, WorkoutPictureUploader
-
-  # has_many :users
-  # has_many :teams
-  #belongs_to(:team, { :required => true, :class_name => "Team", :foreign_key => "user_id" })
+  has_many :teams, :through => :challenge
+  has_many :participations, :through => :user
 end

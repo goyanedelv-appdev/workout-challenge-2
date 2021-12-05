@@ -25,7 +25,8 @@ class PhotoworkoutsController < ApplicationController
 
     matching_photoworkouts = Photoworkout.where({ :id => the_id })
 
-    @the_photoworkout = matching_photoworkouts.at(0)
+    @workout = matching_photoworkouts.at(0)
+    @the_challenge = Challenge.where({:id => @workout.challenge_id}).at(0)
 
     render({ :template => "photoworkouts/show.html.erb" })
   end
@@ -79,7 +80,7 @@ class PhotoworkoutsController < ApplicationController
 
     the_photoworkout.destroy
 
-    redirect_to("/photoworkouts", { :notice => "Photoworkout deleted successfully."} )
+    redirect_to("/challenges", { :notice => "Photoworkout deleted successfully."} )
   end
 
   def like
