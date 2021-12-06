@@ -131,7 +131,6 @@ class UserAuthenticationController < ApplicationController
 
       if @q_wkt < 10
         @level = "Tiny penguin 🐧"
-        
       elsif @q_wkt < 20
         @level = "Small otter 🦦"
       elsif @q_wkt < 50
