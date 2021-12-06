@@ -3,9 +3,9 @@ class UserAuthenticationController < ApplicationController
   # skip_before_action(:force_user_sign_in, { :only => [:sign_up_form, :create, :sign_in_form, :create_cookie] })
 
   def sign_in_form
-    if session.fetch(:user_id) != nil
-      redirect_to("/")
-    else
+    # if session.fetch(:user_id) != nil
+    #  redirect_to("/")
+    # else
       render({ :template => "user_authentication/sign_in.html.erb" })
   end
 
