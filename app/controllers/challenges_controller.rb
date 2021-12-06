@@ -273,6 +273,7 @@ class ChallengesController < ApplicationController
       @the_challenge = Challenge.where( {:challenge_handle => handle}).at(0)
       
       render({ :template => "challenges/join.html.erb" })
+    end
   end
 
   def teams
