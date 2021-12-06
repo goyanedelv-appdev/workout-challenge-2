@@ -59,12 +59,11 @@ class UserAuthenticationController < ApplicationController
       @user.password = params.fetch("query_password")
       @user.password_confirmation = params.fetch("query_password_confirmation")
       @user.is_premium = false # params.fetch("query_is_premium", false)
-
-      if params.fetch("query_profile_picture").blank?
-        @user.profile_picture = 'https://res.cloudinary.com/dkwblobc2/image/upload/v1637562716/wsea1qzp9fzfwsvexjhf.png'
-      else
-        @user.profile_picture = params.fetch("query_profile_picture")
-      end
+      
+      @user.profile_picture = params.fetch("query_profile_picture")
+      
+      @user.profile_picture = "/assets/images/default_image.jpg" if @user.profile_picture.empty?
+      
       @user.bio = params.fetch("query_bio")
       @user.username = params.fetch("query_username")
   
