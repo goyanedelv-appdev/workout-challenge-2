@@ -264,15 +264,15 @@ class ChallengesController < ApplicationController
 
   def join
 
-    if session[:user_id] 
+    if @current_user == nil
+      redirect_to("/", { :notice => "You need to Sign up or Log in to join the challenge 💪" })
+    else
       handle = params.fetch("handle")
       user_id = @current_user.id
       
       @the_challenge = Challenge.where( {:challenge_handle => handle}).at(0)
       
       render({ :template => "challenges/join.html.erb" })
-    else
-      redirect_to("/", { :notice => "You need to Sign up or Log in to join the challenge 💪" })
   end
 
   def teams
