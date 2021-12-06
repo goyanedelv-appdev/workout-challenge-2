@@ -279,7 +279,7 @@ class ChallengesController < ApplicationController
 
     @participants = Participation.where( {:challenge_id => @the_challenge.id}).order({ :team_id => :asc })
 
-    @tims = Team.where({:challenge_id => @the_challenge.id}).order({ :team_id => :asc })
+    @tims = Team.where({:challenge_id => @the_challenge.id}).order({ :id => :asc })
 
     @verifly = Privilege.where({:challenge_id => @the_challenge.id})
 
