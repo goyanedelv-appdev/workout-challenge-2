@@ -62,7 +62,7 @@ class UserAuthenticationController < ApplicationController
       
       # @user.profile_picture = params.fetch("query_profile_picture")
       
-      @user.profile_picture = "https://res.cloudinary.com/dkwblobc2/image/upload/v1637562716/wsea1qzp9fzfwsvexjhf.png"
+      @user.profile_picture = "image/upload/v1637562716/wsea1qzp9fzfwsvexjhf.png"
 
       @user.bio = params.fetch("query_bio")
       @user.username = params.fetch("query_username")
